@@ -1,0 +1,5 @@
+package com.jsp.hibernate.Hibernateproject_OneToMany;
+
+public class Passport {
+
+}

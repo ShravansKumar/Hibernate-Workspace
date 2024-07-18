@@ -1,0 +1,137 @@
+package com.jsp.hibernate.Hibernate_Employee;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+
+
+
+
+
+
+
+public class EmployeeService {
+
+
+	public Session getSession() {
+
+	Configuration cfg=new Configuration().configure().addAnnotatedClass(Employee.class);
+
+
+	SessionFactory sf=cfg.buildSessionFactory();
+	Session session =sf.openSession();
+	
+	
+	return session;
+	
+	
+	}
+	
+	Transaction trans = getSession().beginTransaction();
+
+
+
+	Scanner scanner = new Scanner(System.in);
+
+	// Add Employee
+	public void addEmployee() {
+
+		System.out.print("Enter employee ID: ");
+		int employeeId = scanner.nextInt();
+		scanner.nextLine(); 
+		System.out.print("Enter employee name: ");
+		String employeeName = scanner.next();
+		System.out.print("Enter employee email: ");
+		String employeeEmail = scanner.next();
+		System.out.print("Enter employee address: ");
+		String employeeAddress = scanner.next();
+
+		Employee employee = new Employee();
+		employee.setsId(employeeId);
+		employee.setsName(employeeName);
+		employee.setsMail(employeeEmail);
+		employee.setsAddress(employeeAddress);
+
+		trans.commit();
+		getSession().save(employee);
+		System.out.println("    Employee added successfully.    ");
+
+
+
+
+	}
+	
+	
+	//Find Employee
+	public void   findEmployeeById()
+	{
+		System.out.println("Enter the EmployeeId  mone !");
+		int  employeeId=scanner.nextInt();
+		Employee emp = getSession().get(Employee.class, employeeId);
+
+		System.out.println(emp);
+
+	}
+
+    //update Employee
+	 public void updateEmployeeById()
+	 {
+      System.out.println("Enter The Employee id vavee ");
+      int employeeId=scanner.nextInt();
+	  Employee emp = getSession().get(Employee.class, employeeId);
+	  System.out.println("Enter the Employee Mail id to be updated !");
+	  
+	   String employeeEmail=scanner.next();
+	  emp.setsMail(employeeEmail); 
+	  
+	  
+	  System.out.println("Enter The Employee Address to be updated ");
+      String employeeAddress=scanner.next();
+	  
+	  emp.setsAddress(employeeAddress);
+	  getSession().update(emp);
+	  
+	  getSession().save(emp);
+	 }
+
+
+
+//Delete employee
+
+	 public void deleteEmployeeById(Session session, int employeeId) 
+	 {
+	  Employee emp = session.get(Employee.class, employeeId);
+
+
+
+
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,102 @@
+package com.jsp.hibernate.Hibernate_Employee;
+
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+
+
+public class EmployeeService {
+
+
+
+	Configuration cfg=new Configuration().configure().addAnnotatedClass(Employee.class);
+
+
+	SessionFactory sf=cfg.buildSessionFactory();
+	Session session =sf.openSession();
+
+	Transaction trans = session.beginTransaction();
+	
+	
+	
+	Scanner scanner = new Scanner(System.in);
+
+	 // Add Employee
+	public void addEmployee() {
+		
+		System.out.print("Enter employee ID: ");
+		int employeeId = scanner.nextInt();
+		scanner.nextLine(); 
+		System.out.print("Enter employee name: ");
+		String employeeName = scanner.next();
+		System.out.print("Enter employee email: ");
+		String employeeEmail = scanner.next();
+		System.out.print("Enter employee address: ");
+		String employeeAddress = scanner.next();
+
+		Employee employee = new Employee();
+		employee.setsId(employeeId);
+		employee.setsName(employeeName);
+		employee.setsMail(employeeEmail);
+		employee.setsAddress(employeeAddress);
+
+       trans.commit();
+		session.save(employee);
+		System.out.println("    Employee added successfully.    ");
+		
+		
+		
+		
+	}
+	 public Employee findEmployeeById()
+	 {
+		 System.out.println("Enter the Employee mone !");
+		int  employeeId=scanner.nextInt();
+	  Employee emp = session.get(Employee.class, employeeId);
+	  return emp;
+	  
+	 
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

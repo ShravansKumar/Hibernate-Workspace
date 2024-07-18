@@ -1,0 +1,40 @@
+package com.jsp.hibernate.Hibernate_Employee;
+
+public class Employee {
+	private int sId;
+	private String sName;
+	private  String sMail;
+	private  String sAddress;
+	public int getsId() {
+		return sId;
+	}
+	public void setsId(int sId) {
+		this.sId = sId;
+	}
+	public String getsName() {
+		return sName;
+	}
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+	public String getsMail() {
+		return sMail;
+	}
+	public void setsMail(String sMail) {
+		this.sMail = sMail;
+	}
+	public String getsAddress() {
+		return sAddress;
+	}
+	public void setsAddress(String sAddress) {
+		this.sAddress = sAddress;
+	}
+	@Override
+	public String toString() {
+		return "Employee [sId=" + sId + ", sName=" + sName + ", sMail=" + sMail + ", sAddress=" + sAddress + "]";
+	}
+ 
+	
+
+
+}
